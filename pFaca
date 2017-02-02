@@ -1,0 +1,59 @@
+Dim x As Integer
+Dim y As Integer
+Dim z As Integer
+Dim LastCell As Long
+
+Sub pFaca()
+    Worksheets("1").Activate
+    Workbooks.Open ("C:\Users\Public\Documents\Temporary\1.xlsx")
+    Worksheets("Sheet1").Activate
+    Beep
+    LastCell = Cells(Rows.Count, 5).End(xlUp).Row               'Define última célula
+    
+    Range("A2", "K" & LastCell).Copy
+    Windows("CONTROL").Activate
+    Beep
+    LastCell = (Cells(Rows.Count, 5).End(xlUp).Row) + 1         'Define última célula
+    Range("C" & LastCell).PasteSpecial xlPasteValues
+    
+' //////////
+
+    Windows("1").Activate
+    LastCell = Cells(Rows.Count, 1).End(xlUp).Row               'Define última célula
+    Range("A2", "K" & LastCell).Cut
+    Range("A2").Select
+    ActiveSheet.Paste
+    Windows("CONTROL").Activate
+    Windows("1").Close
+    
+' //////////
+    
+    Worksheets("2").Activate
+    LastCell = Cells(Rows.Count, 4).End(xlUp).Row               'Define última célula
+    Range("A4:E" & LastCell).Delete
+    
+    Workbooks.Open ("C:\Users\Public\Documents\Temporary\2.xlsx")
+    Worksheets("Sheet1").Activate
+    LastCell = Cells(Rows.Count, 4).End(xlUp).Row               'Define última célula
+    Range("A2:D" & LastCell).Copy
+    
+    Windows("CONTROL").Activate
+    Beep
+    Cells(4, 2).PasteSpecial xlPasteValues
+    Range("A1").Copy
+    Range("A4:A" & LastCell).PasteSpecial xlPasteFormulas
+    LastCell = Cells(Rows.Count, 1).End(xlUp).Row               'Define última célula
+    Range("E4:E" & LastCell).NumberFormat = "dd/mm/yyyy"
+    
+' //////////
+
+    Windows("2").Activate
+    Range("A2", "D" & LastCell).Cut
+    Range("A2").Select
+    ActiveSheet.Paste
+    Windows("CONTROL").Activate
+    Windows("2").Close
+    
+' //////////
+    
+End Sub
